@@ -130,19 +130,35 @@ public class ExService {
 
 	public String ex326() {
 		List<String> list = new ArrayList<>();
+		String result = "";
 		
 		list.add("public");
 		list.add("static");
 		list.add("void");
 		
-		for(int i = 0; i<list.size(); i++)
+		for(int i = 0; i<list.size(); i++) {
+			result += list.get(i)+ "<br>";
+		}
 		
 		list.remove(1);
+		
 		int voidIndex = list.indexOf("void");
-			
-		return "void의 index = "+ voidIndex;
+		
+		result +=  "void의 index = " + voidIndex;
+		return result;
 	}
 
+	public String ex327() {
+		String str1 = new String("is same?");
+		String str2 = new String("is same?");
+		String result = "";
+		
+		result = "결과 : " + (str1 == str2); 
+		
+		log.info("str1 == str2" );
+		return result;
+	}
 
+	
 	
 }

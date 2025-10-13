@@ -54,4 +54,10 @@ public class ExController {
 		return exService.ex326();
 	}
 	
+	@GetMapping("/ex327")
+	public String getex327() {
+		return exService.ex327();
+	}
+	
+	
 }
