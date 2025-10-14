@@ -319,6 +319,7 @@ public class ExService {
 		return result;
 	}
 	
+<<<<<<< HEAD
 	public String ex339() {
 		String s = getSomeString();  
         String result = "";
@@ -344,6 +345,10 @@ public class ExService {
 	 }
 	
 	 
+=======
+	
+	
+>>>>>>> f28504915d560363daaa8e2f161ca85525967f5e
 	
 	
 }

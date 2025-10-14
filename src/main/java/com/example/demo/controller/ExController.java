@@ -104,6 +104,7 @@ public class ExController {
 		return exService.ex338();
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/ex339")
 	public String getex339() {
 		return exService.ex339();
@@ -114,5 +115,7 @@ public class ExController {
 		return exService.ex3310();
 	}
 	
+=======
+>>>>>>> f28504915d560363daaa8e2f161ca85525967f5e
 
 }
