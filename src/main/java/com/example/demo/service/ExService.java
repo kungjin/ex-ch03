@@ -345,10 +345,6 @@ public class ExService {
 	 }
 	
 	 
-=======
-	
-	
->>>>>>> f28504915d560363daaa8e2f161ca85525967f5e
 	
 	
 }
