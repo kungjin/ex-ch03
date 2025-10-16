@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 
 @Service
 public class ExService {
@@ -250,105 +250,161 @@ public class ExService {
 		Integer[] integerArray = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		List<Integer> list = Arrays.asList(integerArray);
 
-		String result = Arrays.stream(integerArray)
-				.filter(value -> value % 2 == 0)
-				.peek(System.out::println)
-				.map(String::valueOf)
-				.collect(Collectors.joining("<br>"));
+		String result = Arrays.stream(integerArray).filter(value -> value % 2 == 0).peek(System.out::println)
+				.map(String::valueOf).collect(Collectors.joining("<br>"));
 
 		log.info("스트림 API 결과값 {}", result);
 		return result;
 	}
 
 	public String ex335() {
-		Integer[] integerArray = new Integer[] {1,2,3,4,5};
+		Integer[] integerArray = new Integer[] { 1, 2, 3, 4, 5 };
 		List<Integer> list = Arrays.asList(integerArray);
-		
-		String result = list.stream()
-				.map(String::valueOf)
-	            .collect(Collectors.joining("<br>"));
-		
+
+		String result = list.stream().map(String::valueOf).collect(Collectors.joining("<br>"));
+
 		list.forEach(System.out::println);
-	
+
 		log.info("forEach 구문 결과값 : {}", result);
 		return result;
 	}
 
 	public String ex336() {
-		Integer[] integerArray = new Integer[] {1,2,3,4,5,6,7,8,9,10};
+		Integer[] integerArray = new Integer[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 		List<Integer> list = Arrays.asList(integerArray);
-		List<Integer> evenList = list.stream()
-	            .filter(v -> v % 2 == 0)
-	            .collect(Collectors.toList());
-		
-		String result = evenList.stream()
-	            .map(String::valueOf)
-	            .collect(Collectors.joining("<br>"));
-		
+		List<Integer> evenList = list.stream().filter(v -> v % 2 == 0).collect(Collectors.toList());
+
+		String result = evenList.stream().map(String::valueOf).collect(Collectors.joining("<br>"));
+
 		log.info("filter 결과값 : {}", result);
 		return result;
 	}
 
 	public String ex337() {
-		 Integer[] integerArray = {1,1,1,1,2,2,2,3,3,4}; // new 객체 축약 문법 
+		Integer[] integerArray = { 1, 1, 1, 1, 2, 2, 2, 3, 3, 4 }; // new 객체 축약 문법
 
-		    String result = Arrays.stream(integerArray)
-		            .distinct()                       // 중복 제거 (원본 순서 유지)
-		            .peek(v -> log.info("distinct: {}", v)) // 로그로 하나씩 표기
-		            .map(String::valueOf)             // 화면용 문자열로 변환
-		            .collect(Collectors.joining("<br>")); // 줄바꿈 구분으로 합치기
+		String result = Arrays.stream(integerArray).distinct() // 중복 제거 (원본 순서 유지)
+				.peek(v -> log.info("distinct: {}", v)) // 로그로 하나씩 표기
+				.map(String::valueOf) // 화면용 문자열로 변환
+				.collect(Collectors.joining("<br>")); // 줄바꿈 구분으로 합치기
 
-		    log.info("distinct summary (count={}): {}", 
-		             result.split("<br>").length, result);
+		log.info("distinct summary (count={}): {}", result.split("<br>").length, result);
 
-		    return result; // 화면: 1<br>2<br>3<br>4
-		    // 지피티가 제시한 좀 더 간단한 방법 활용 
+		return result; // 화면: 1<br>2<br>3<br>4
+		// 지피티가 제시한 좀 더 간단한 방법 활용
 	}
 
 	public String ex338() {
-		String[] lowercaseArray = {"public", "static" , "void"};
+		String[] lowercaseArray = { "public", "static", "void" };
 		List<String> lowercaseList = Arrays.asList(lowercaseArray);
-		
-		List<String> uppercaseList = lowercaseList.stream()
-		            .map(s -> s.toUpperCase(Locale.ROOT))
-		            .toList();
-		
-		 String result = String.join("<br>", uppercaseList);
-		
-		log.info("ex338 result: {}",result);
+
+		List<String> uppercaseList = lowercaseList.stream().map(s -> s.toUpperCase(Locale.ROOT)).toList();
+
+		String result = String.join("<br>", uppercaseList);
+
+		log.info("ex338 result: {}", result);
 		return result;
 	}
-	
-<<<<<<< HEAD
+
 	public String ex339() {
-		String s = getSomeString();  
-        String result = "";
+		String s = getSomeString();
+		String result = "";
 
-        if (s != null) {            
-            result = s.toUpperCase();
-        }
+		if (s != null) {
+			result = s.toUpperCase();
+		}
 
-        log.info("ex339 result: {}", result);
-        return result;
-	}
-	
-	 private String getSomeString() {
-	        return null; 
-	    }
-
-	 public String ex3310() {
-		String isThisNull = getSomeString();
-		
-		String result = isThisNull.toUpperCase();
-		log.info("NPE 터뜨리기 :",result);
+		log.info("ex339 result: {}", result);
 		return result;
-	 }
-	
-	 
-=======
-	
-	
->>>>>>> f28504915d560363daaa8e2f161ca85525967f5e
-	
-	
+	}
+
+	private String getSomeString() {
+		return null;
+	}
+
+	public String ex3310() {
+		String isThisNull = getSomeString();
+
+		String result = isThisNull.toUpperCase();
+		log.info("NPE 터뜨리기 :", result);
+		return result;
+	}
+
+	private static Optional<String> getSomeString1() {
+		return Optional.empty(); // null을 반환하는 것이 아니라 비어있는 Optional을 반환합니다.
+	}
+
+	public String ex3311() {
+
+		Optional<String> isThisNull = getSomeString1();
+
+		// Optional이 비어 있지 않다면 로그 출력
+		isThisNull.ifPresent(str -> log.info("값이 존재합니다: {}", str.toUpperCase()));
+
+		// Optional이 비었을 경우
+		if (isThisNull.isEmpty()) {
+			log.warn("값이 없습니다. (Optional.empty)");
+		}
+
+		return "실행 완료 - 콘솔 로그 확인";
+	}
+
+	private static Optional<String> getSomeString2() {
+		return Optional.ofNullable("public static void");
+	}
+
+	public String ex3312() {
+
+		Optional<String> isThisNull = getSomeString2();
+
+		isThisNull.ifPresent(str -> log.info(str.toUpperCase()));
+
+		String result = isThisNull.map(String::toUpperCase).orElseGet(() -> "값이 없음");
+
+		// ::는 “람다에서 그대로 호출하는 메서드를 간단하게 참조하라”는 문법이에요.
+		// 즉, String::toUpperCase는 "문자열을 대문자로 바꾸는 함수" 그 자체를 넘긴 겁니다
+
+		// orElse()
+		// → Optional 안에 값이 있으면 그 값을 꺼내서 반환
+		// → 값이 없으면 괄호 안의 "기본값"을 대신 반환
+		// → 예: Optional.empty()이면 "값이 없음"이 result에 저장됨
+		// → 단, 괄호 안의 표현식은 Optional이 비어있든 아니든 항상 먼저 실행됨
+		// (즉, '기본값'을 미리 계산하는 비용이 생길 수 있음)
+
+		// orElseGet(() -> "값이 없음")
+		// → Optional이 비어 있을 때만 실행됨 (게으른 평가, Lazy Evaluation)
+		// → 값이 있을 때는 괄호 안의 코드가 전혀 실행되지 않음 → 효율적
+
+		return result;
+	}
+
+	private static Optional<String> getSomeString3() {
+		return Optional.ofNullable("public static void");
+	}
+
+	public String ex3313() {
+		Optional<String> str = getSomeString3();
+
+		if (str.isPresent()) {
+			log.info(str.get().toUpperCase());
+		}
+
+		String result = str.map(String::toUpperCase).orElse(getSomeString());
+
+		return result;
+	}
+
+	private static Optional<String> getSomeString4() {
+		return Optional.ofNullable("public static void");
+	}
+
+	public String ex3314() {
+		Optional<String> str = getSomeString4();
+
+		str.ifPresent((String) -> log.info(String.toUpperCase()));
+		String result = str.map(String::toUpperCase).orElse(getSomeString());
+
+		return result;
+	}
+
 }
